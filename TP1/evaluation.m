@@ -1,5 +1,5 @@
 function [ val, nouv_a, nouv_c ] = evaluation( n, a, c, t )
-%EVALUATION Produit le polynôme de Newton avec le schéma de Hörner
+%EVALUATION Évalue le polynôme de Newton avec le schéma de Hörner
 %      n : Degré du polynôme
 %      a : Coefficient de l'écriture de Newton
 %      c : Point de support
