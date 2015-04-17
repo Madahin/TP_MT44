@@ -1,0 +1,85 @@
+\documentclass[a4paper,10pt]{report}
+
+\usepackage[francais]{babel}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage[top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{pgfgantt}
+
+\usepackage{listings}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{-}{rgb}{0,0.5,1}
+\definecolor{colString}{rgb}{0.6,0.1,0.1}
+\definecolor{colBack}{rgb}{0.9,0.9,0.9}
+\definecolor{colComments}{rgb}{0.5,0.5,0.5}
+
+
+\lstdefinestyle{customc}
+{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  numbers=left,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  tabsize=4,
+}
+
+\lstdefinestyle{customasm}
+{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=customc}
+
+% Title Page
+\title{Rapport MT44\\\huge{TP1}}
+\author{Nicolas Fleurot\\Tony Duong}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+\chapter*{Question 1}
+\addcontentsline{toc}{chapter}{Question 1}
+
+\section*{Rappel}
+\addcontentsline{toc}{section}{Rappel}
+
+\section*{Théorie}
+\addcontentsline{toc}{section}{Théorie}
+
+\section*{Source}
+\addcontentsline{toc}{section}{Source}
+
+\section*{Test}
+\addcontentsline{toc}{section}{Test}
+
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+
+\end{document}
