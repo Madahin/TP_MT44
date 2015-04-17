@@ -66,3 +66,4 @@ plot(x, abs(y2 - exp(x)), 'color', 'r');
 title('Erreur d''interpolation');
 xlabel('x');
 ylabel('y');
+legend('exp1', 'exp2');
