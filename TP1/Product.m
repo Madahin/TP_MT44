@@ -1,9 +1,9 @@
 function prod = Product( i, x, c )
-%PRODUCT Calcule les polynôme de Newton
-%    i : Degré du polynôme
-%    x : Valeur pour laquelle évaluer la fonction
-%    c : Point de support
-% prod : le polynôme de Newton
+%PRODUCT Calcule les polynomes de Newton
+%    i : Degré du polynome
+%    x : Valeur pour laquelle evaluer la fonction
+%    c : Points de support
+% prod : le polynome de Newton
 
 prod = 1;
 for j = 1:i

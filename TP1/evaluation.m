@@ -1,14 +1,14 @@
 function [ val, nouv_a, nouv_c ] = evaluation( n, a, c, t )
-%EVALUATION Évalue le polynôme de Newton avec le schéma de Hörner
-%      n : Degré du polynôme
+%EVALUATION Evalue le polynome de Newton avec le schema de Horner
+%      n : Degre du polynôme
 %      a : Coefficient de l'écriture de Newton
-%      c : Point de support
-%      t : Valeur pour laquelle évaluer la fonction
-%    val : Résultat de l'évaluation
-% nouv_a : Composante de la fonction en écriture de Newton relative à nouv_c
-% nouv_c : Représente (t, C1, ...n Cn-1) ainsi que le nouveau vecteur des centres
+%      c : Points de support
+%      t : Valeur pour laquelle evaluer la fonction
+%    val : Résultat de l'evaluation
+% nouv_a : Composante de la fonction en écriture de Newton relative a nouv_c
+% nouv_c : Represente (t, C1, ...n Cn-1) ainsi que le nouveau vecteur des centres
 
-% On alloue de la mémoire
+% On alloue de la memoire
 nouv_a = zeros(1, n+1);
 nouv_c = zeros(1, n);
 

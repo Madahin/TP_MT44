@@ -1,8 +1,8 @@
 function tab = table_diff_div( x, y )
-% TABLE_DIFF_DIV Génère la table des différence divisé
-% x : Vecteur des abscisses des point de support
-% y : Vecteur des ordonnées des point de support
-% tab : Table des differences divisé
+% TABLE_DIFF_DIV Genere la table des differences divisées
+% x : Vecteur des abscisses des points de support
+% y : Vecteur des ordonnees des points de support
+% tab : Table des differences divisees
 % Exemple :
 % +-+----+--------+-----------+
 % |x|f(x)|f[x1,x2]|f[x1,x2,x3]|
@@ -21,13 +21,13 @@ sizeY = numel(y);
 
 % On test la taille des vecteur
 if (sizeX ~= sizeY)
-    % Dans ce cas, on devrait échouer
+    % Dans ce cas, on devrait echouer
 end
 
 
-% On crée une table dont les deux premier colonne sont nos vecteur d'entrés
+% On cree une table dont les deux premieres colonnes sont nos vecteurs d'entrées
 tab = [x', y', zeros(sizeX, sizeX-1)];
-% Écart de la base de la pyramide des différences divisées
+% Écart de la base de la pyramide des differences divisees
 gap = 1;
 
 for i = 1:sizeX-1
@@ -35,7 +35,7 @@ for i = 1:sizeX-1
         % Calcul du coefficient f[xj, xi]
         tab(j, i+2) = (tab(j+1, i+1) - tab(j, i+1)) / (tab(j+gap, 1) - tab(j, 1));
     end
-    % Pour chaque nouvelle colonne, l'écart grandit
+    % Pour chaque nouvelle colonne, l'ecart grandit
     gap = gap + 1;
 end
 end

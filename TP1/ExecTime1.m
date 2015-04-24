@@ -1,4 +1,4 @@
-% On définit les données d'un polynôme
+% On definit les donnees d'un polynome
 % d'interpolation vu en TD
 n = 3;
 a = [1.5709 0.0006 0.00012];
@@ -6,7 +6,7 @@ c = [1 4 6];
 t = 3.5;
 
 
-% Pour avoir des données correctes, on test
+% Pour avoir des donnees correctes, on test
 % la fonction 1000 fois et on regarde la moyenne
 % du temps d'execution
 sum1 = 0;
@@ -18,7 +18,7 @@ end
 elapsed1 = sum1/1000;
 
 
-% Même chose que pour evaluation1
+% Meme chose que pour evaluation1
 sum2 = 0;
 for z=0:1000
     tic;
