@@ -1,10 +1,10 @@
 function  val  = evaluation1( n, a, c, t )
 % EVALUATION1 Evalue le polynome de Newton
 %   n : Degre du polynome
-%   a : Coefficient d l'écriture de Newton
+%   a : Coefficient de l'ecriture de Newton
 %   c : Points de support
 %   t : Valeur pour laquelle evaluer la fonction
-% val : Résulat de l'evaluation 
+% val : Resulat de l'evaluation 
 
 val = 0;
 for i = 0:n-1

@@ -1,5 +1,4 @@
 \documentclass[a4paper,10pt]{report}
-
 \usepackage[francais]{babel}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
@@ -21,6 +20,8 @@
 \definecolor{colString}{rgb}{0.6,0.1,0.1}
 \definecolor{colBack}{rgb}{0.9,0.9,0.9}
 \definecolor{colComments}{rgb}{0.5,0.5,0.5}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
 
 
 \lstdefinestyle{customc}
@@ -50,6 +51,23 @@
   commentstyle=\itshape\color{purple!40!black},
 }
 
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
 \lstset{escapechar=@,style=customc}
 
 % Title Page
@@ -64,22 +82,160 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-\chapter*{Question 1}
-\addcontentsline{toc}{chapter}{Question 1}
+    En mathématiques, en analyse numérique, l'interpolation polynomiale est une technique d'interpolation d'un ensemble de données ou d'une fonction par un polynôme. En d'autres termes, étant donné un ensemble de points $\lbrace{(t_{0}, y_{0}), … , (t_{n},y_{n})}\rbrace $ (obtenu, par exemple, à la suite d'une expérience, de mesures), on cherche un polynôme p de degré au plus n qui passe par tous ces points (donc tel que $p(t_{i}) = y_{i}$). 
 
-\section*{Rappel}
-\addcontentsline{toc}{section}{Rappel}
+    Dans une première partie, nous allons évaluer une fonction polynôme en $t$ avec ($t$ appartient réel) a partir d’un ensemble de points de support quelconque. Deux algorithmes seront utilisés afin d’évaluer cette fonction et nous comparerons les temps d’exécution respectifs. 
 
-\section*{Théorie}
-\addcontentsline{toc}{section}{Théorie}
+Dans une seconde partie, nous allons générer la table des différences divisés a partir des points de supports ainsi que l’écriture du polynôme d’interpolation en ayant calculé au préalable ses composantes. Nous mettrons ensuite en application ces outils MATLAB en utilisant des points régulièrement répartis ainsi que les huit points de Tchebyschev comme support pour notre polynôme d’interpolation de la fonction exponentielle.
 
-\section*{Source}
-\addcontentsline{toc}{section}{Source}
+Enfin, en utilisant les outils précédemment développés, nous mettrons en évidence l’erreur d’interpolation commise lors de l’approximation de la fonction exponentielle par les deux différentes fonctions d’interpolations (support avec répartition régulière et support de Tchebyschev).
 
-\section*{Test}
-\addcontentsline{toc}{section}{Test}
+\chapter*{Partie 1 : Evaluation d’une fonction polynôme en $t$}
+\addcontentsline{toc}{chapter}{Partie 1 : Evaluation d’une fonction polynôme en $t$}
+
+On considère la fonction polynôme $p$ de degré $n$ $(n \in N^{∗} )$ définie pour tout x
+réel par son écriture de Newton relative aux centres $(c_{1} , ..., c_{n})$ :
+
+
+\begin{equation}
+p(x) = \sum_{\substack{i=0}}^{n} a_{i} \left(\prod_{j=1}^{i}(x-c_{i})\right)
+\end{equation}
+
+en adoptant les conventions du cours, c’est-à-dire :
+\begin{list}{}{}
+\item \begin{list}{$\bullet$}{}
+\item $\prod^{0}_{j=1} (x-c_{j}) = 1$
+\item les $a_{i}$ sont les composantes d’un vecteur de $n + 1$ réels définis plus haut,
+\item $c$ désignera ci-dessous le vecteur des centres.
+\end{list}
+\end{list}
+
+\section*{Question 1a}
+\addcontentsline{toc}{section}{Question 1a}
+
+\subsection*{Rappel}
+\addcontentsline{toc}{subsection}{Rappel}
+
+Ecrire une fonction d’évaluation de p en le réel t, notée $evaluation1(n, a, c, t)$, utilisant une fonction à définir, qui calcule les différents $\prod_{j=1}^{i}(x-c_{i})$
+grâce à un schéma itératif. $evaluation1()$ fait usage des champs indiqués, conformément aux notations du poly, et produit $val = p(t)$.
+
+\subsection*{Théorie}
+\addcontentsline{toc}{subsection}{Théorie}
+
+L’écriture du polynôme d’interpolation de Newton est la suivante : (ecrire ecriture).
+avec     ai : les coefficients de newton
+\begin{itemize}
+	\item $x$  : la valeur en laquelle la fonction sera évaluée
+    \item $x_{j}$ : les points de support
+\end{itemize}
+    
+Pour calculer $p(t)$ avec $t$ un réel, nous devons d’abord calculer les différents $(t-c_{j})$ que nous conserverons dans un vecteur. Puis nous effectuons le produit des coefficients de l’écriture de Newton (qui sont considérés calculés avant l’appel de la fonction) par les différents polynômes de Newton stockés dans le vecteur.
+
+\subsection*{Source}
+\addcontentsline{toc}{subsection}{Source}
+
+\begin{center}
+	\lstinputlisting[caption=evaluation1, language=Matlab]{evaluation1.m}
+\end{center}
+
+\begin{center}
+	\lstinputlisting[caption=product, language=Matlab]{Product.m}
+\end{center}
+
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+\section*{Question 1b}
+\addcontentsline{toc}{section}{Question 1b}
+
+\subsection*{Rappel}
+\addcontentsline{toc}{subsection}{Rappel}
+
+Dans cette partie, nous avons le même objectif que celui de la question précédente, à savoir calculer p(t) avec t un réel. Néanmoins nous devons utiliser non plus le schéma itératif mais le schéma de Horner. 
+
+\subsection*{Théorie}
+\addcontentsline{toc}{subsection}{Théorie}
+
+Ecrire une fonction d’évaluation de $p$ en $t$, notée $evaluation(n, a, c, t →
+val, nouv_a, nouv_c)$ qui utilise un schéma de Hörner et produit, en plus de
+$val = p(t)$, le vecteur $nouv{a}$ des composantes de $p$ en écriture de Newton
+relative à $nouv_c$ qui représente $(t, c_{1}, ..., c_{n−1})$ ainsi que le nouveau vecteur des centres.
+
+\subsubsection*{Algorithme de Horner}
+
+\textbf{entrée :}
+
+\begin{list}{}{}
+\item $n$ : entier naturel représentant le degré de $p$;
+\item $a$ : vecteur de $n+1$ réels désignant les coefficiants de $p$ dans la base considérée, donc $a(i) = a_{i}$ pour tout $i$ de $\lbrace 0, ..., n\rbrace$;
+\item $c$ : vecteur de $n$ réels désignant les centres condidérés, donc $c(i)=c_{i}$ pour tout $i$ de $\lbrace 1, ..., n\rbrace$;
+\item $t$ : réel en lequel on évalue $p$;
+\end{list}
+
+\textbf{sortie}
+\begin{list}{}{}
+\item $val$ : réel défini par $val = p(t)$;
+\item $a'$ : vecteur de $n+1$ réels, dont la signification profonde et l'utilité seront saisie dans le théorème 1.9;
+\end{list}
+
+\textbf{Début du corps}
+\begin{list}{}{}
+\item $a'(n) \longleftarrow a(n)$
+\item \textbf{pour} i = n-1 à \textbf{faire}
+\item \begin{list}{}{}
+\item $a'(i) \longleftarrow a(i) + (t-c(i+1))a'(i+1)$
+\end{list}
+\item \textbf{fin pour}
+\item $val \longleftarrow a'(0)$
+\end{list}
+
+\textbf{Fin du corps}
+
+Nous étudierons ultérieurement la différence de performance entre ces deux schémas. 
+
+\newpage
+\subsection*{Source}
+\addcontentsline{toc}{subsection}{Source}
+
+\lstinputlisting[caption=product, language=Matlab]{evaluation.m}
+
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+\section*{Question 1c}
+\addcontentsline{toc}{section}{Question 1c}
+
+\subsection*{Théorie}
+\addcontentsline{toc}{subsection}{Théorie}
+
+En utilisant les outils de Matlab $(tic, toc, etime, etc...)$ comparer les temps
+d’exécution des deux fonctions d’évaluation écrites, en fonction du degré
+du polynôme considéré. Visualiser les résultats obtenus.
+
+\subsection*{Rappel}
+\addcontentsline{toc}{subsection}{Rappel}
+
+La performance est souvent très importante dans le calcul scientifique. C’est pourquoi nous comparons les temps d’exécution des deux algorithmes précédents en utilisant les fonctions tic et toc de Matlab.
+
+\section*{Question 1d}
+\addcontentsline{toc}{section}{Question 1d}
+
+\subsection*{Théorie}
+\addcontentsline{toc}{subsection}{Théorie}
+
+Ecrire une version matricielle de $evaluation()$, qui à partir d’un vecteur
+colonne de réels $T$ produit le vecteur colonne des images $p(T)$. Cette nouvelle
+version sera conservée sous le même nom et considérée comme algorithme
+d’évaluation par défaut.
+
+\subsection*{Source}
+\addcontentsline{toc}{subsection}{Source}
+
+\lstinputlisting[caption=product, language=Matlab]{evaluation2.m}
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
+
+
 
 \end{document}

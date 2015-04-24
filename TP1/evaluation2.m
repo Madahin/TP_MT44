@@ -1,5 +1,5 @@
 function vars = evaluation2( n, a, c, t )
-% EVALUATION2 version matricelle de évaluation(n, a, c, t)
+% EVALUATION2 version matricelle de evaluation(n, a, c, t)
 
 PNumber = numel(t);
 vars = zeros(1, PNumber);
