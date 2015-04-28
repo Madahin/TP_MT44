@@ -3,15 +3,15 @@ function [ composante, chaine ] = interpol( n, x, y )
 % de f sur le suppport {x0, ..., xn}
 %          n : Nombre de points de support
 %          x : Vecteur des abscisses des points de support
-%          y : Vecteur des ordonnées des points de support
+%          y : Vecteur des ordonnees des points de support
 % composante : Composante du polynome d'interpolation
-%     chaine : Chaine de caractère représentant le polynome d'interpolation
+%     chaine : Chaine de caractere representant le polynome d'interpolation
 
 
-% Calcule la table des differences divisées
+% Calcule la table des differences divisees
 table = table_diff_div(x, y);
 
-% Alloue de la mémoire
+% Alloue de la memoire
 composante = zeros(1, n);
 
 % On recupere les composantes dans la table
@@ -19,7 +19,7 @@ for i=2:1:n+1
     composante(i-1) = table(1, i);
 end
 
-% On cree la chaine de caractères
+% On cree la chaine de caracteres
 chaine = '';
 for i=1:n
     % On ecrit la composante

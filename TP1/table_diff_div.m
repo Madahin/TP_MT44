@@ -1,5 +1,5 @@
 function tab = table_diff_div( x, y )
-% TABLE_DIFF_DIV Genere la table des differences divisées
+% TABLE_DIFF_DIV Genere la table des differences divisees
 % x : Vecteur des abscisses des points de support
 % y : Vecteur des ordonnees des points de support
 % tab : Table des differences divisees
@@ -19,15 +19,15 @@ sizeX = numel(x);
 sizeY = numel(y);
 
 
-% On test la taille des vecteur
+% On test la taille des vecteurs
 if (sizeX ~= sizeY)
     % Dans ce cas, on devrait echouer
 end
 
 
-% On cree une table dont les deux premieres colonnes sont nos vecteurs d'entrées
+% On cree une table dont les deux premieres colonnes sont nos vecteurs d'entrees
 tab = [x', y', zeros(sizeX, sizeX-1)];
-% Écart de la base de la pyramide des differences divisees
+% Ecart de la base de la pyramide des differences divisees
 gap = 1;
 
 for i = 1:sizeX-1
