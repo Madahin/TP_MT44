@@ -122,11 +122,17 @@ grâce à un schéma itératif. $evaluation1()$ fait usage des champs indiqués,
 \subsection*{Théorie}
 \addcontentsline{toc}{subsection}{Théorie}
 
-L’écriture du polynôme d’interpolation de Newton est la suivante : (ecrire ecriture).
-avec     ai : les coefficients de newton
+L’écriture du polynôme d’interpolation de Newton est la suivante :
+
+\begin{equation}
+p(x) = \sum_{\substack{i=0}}^{n} \left(a_{i}\left[\prod_{j=0}^{i-1}(x-x_{j})\right]\right)
+\end{equation}
+
+avec
 \begin{itemize}
-	\item $x$  : la valeur en laquelle la fonction sera évaluée
-    \item $x_{j}$ : les points de support
+	\item[$a_{i}$] : les coefficients de newton
+	\item[$x$]  : la valeur en laquelle la fonction sera évaluée
+    \item[$x_{j}$] : les points de support
 \end{itemize}
     
 Pour calculer $p(t)$ avec $t$ un réel, nous devons d’abord calculer les différents $(t-c_{j})$ que nous conserverons dans un vecteur. Puis nous effectuons le produit des coefficients de l’écriture de Newton (qui sont considérés calculés avant l’appel de la fonction) par les différents polynômes de Newton stockés dans le vecteur.
@@ -282,7 +288,11 @@ ainsi que la chaîne de son écriture.
 
 Les coefficients de Newton sont situés sur la diagonale descendante de la table des différences divisées. 
 
-L’écriture de Newton est de la forme : ECRIRE L’ECRITURE
+L’écriture de Newton est de la forme :
+
+\begin{equation}
+p(x) = \sum_{\substack{i=0}}^{n} \left(a_{i}\left[\prod_{j=0}^{i-1}(x-x_{j})\right]\right)
+\end{equation}
 
 Ainsi, nous utilisons la fonction précédente générant la table des différences divisés afin de récupérer les coefficients de l’écriture de Newton. Après cela, nous affichons sa chaîne de caractères pour mettre en évidence sa constitution. 
 
