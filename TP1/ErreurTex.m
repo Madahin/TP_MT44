@@ -25,11 +25,11 @@ Y2 = exp(X2);
 
 % On cree la fonction exp1 correspondant a l'interpolation
 % polynomial de la fonction exponentielle
-% "@(x)" permet de dire a matlab lorsqu'il interpretera
+% "$\at$(x)" permet de dire a matlab lorsqu'il interpretera
 % la chaine de caracteres en fonction que nous prenons
 % un parametre nomme x, creant ainsi un prototype de
 % fonction anonyme
-func1 = '@(x)';
+func1 = '$\at$(x)';
 
 % On concatene ensuite le corps de la fonction, qui
 % est le polynome de la fonction
@@ -40,7 +40,7 @@ exp1 = str2func(func1);
 
 % On cree la fonction exp2, utilisant les points de support
 % de Tchebyschev, de la meme maniere que la fonction exp1
-func2 = '@(x)';
+func2 = '$\at$(x)';
 func2 = strcat(func2, chaine2);
 exp2 = str2func(func2);
 

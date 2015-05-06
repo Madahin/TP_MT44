@@ -377,6 +377,45 @@ Les supports sont :
 \chapter*{Partie 3 : Visualisation de l’erreur d’interpolation}
 \addcontentsline{toc}{chapter}{Partie 3 : Visualisation de l’erreur d’interpolation}
 
+\subsection*{Rappel}
+Utiliser la question précédente et les outils antérieurement développés, pour
+visualiser sur une même représentation graphique, la valeur absolue de l’erreur
+d’interpolation commise lors de l’approximation de la fonction exponentielle
+par $p_{7,1}$ et $p_{7,2}$.
+
+
+\subsection*{Théorie}
+Nous utilisons ici les outils antérieurement développés pour calculer l'erreur entre la fonction exponentielle connu et son approximation par $p_{7,1}$ et $p_{7,2}$.
+Nous utiliserons la formule
+\begin{equation}
+	e_{n}(t) = f(t) - p_{n}(t)
+\end{equation}
+
+avec
+
+\begin{list}{}{}
+\item
+\begin{itemize}
+	\item[$e_{n}(t)$]: Erreur de l'approximation.
+	\item[$f(t)$]: Fonction exponentielle.
+	\item[$p_{n}(t)$]: Approximation de la fonction exponentielle.
+\end{itemize}
+\end{list}
+
+\subsection*{Source}
+\addcontentsline{toc}{subsection}{Source}
+\begin{center}
+	\lstinputlisting[caption=Erreur, language=Matlab, mathescape]{ErreurTex.m}
+\end{center}
+
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+\begin{center}
+	\includegraphics[scale=0.8]{erreur.jpg} 
+\end{center}
+
+
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 
