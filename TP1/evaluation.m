@@ -13,7 +13,6 @@ nouv_a = zeros(1, n+1);
 nouv_c = zeros(1, n);
 
 nouv_c(1) = t;
-
 nouv_a(n) = a(n);
 for i = n-1:-1:1
     nouv_c(i+1) = c(i);

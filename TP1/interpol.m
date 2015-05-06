@@ -4,7 +4,7 @@ function [ composante, chaine ] = interpol( n, x, y )
 %          n : Nombre de points de support
 %          x : Vecteur des abscisses des points de support
 %          y : Vecteur des ordonnees des points de support
-% composante : Composante du polynome d'interpolation
+% composante : Composantes du polynome d'interpolation
 %     chaine : Chaine de caractere representant le polynome d'interpolation
 
 

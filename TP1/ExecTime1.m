@@ -31,3 +31,15 @@ elapsed2 = sum2 / 1000;
 % On affiche les valeurs
 disp(elapsed1);
 disp(elapsed2);
+
+%{ 
+
+OUTPUT
+
+ExecTime1
+
+1.1423e-05 temps moyen pour la function evaluation
+
+6.4668e-06 temps moyen pour la function evaluation1
+  
+%}
