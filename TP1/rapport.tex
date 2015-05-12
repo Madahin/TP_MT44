@@ -83,11 +83,14 @@
 \addcontentsline{toc}{chapter}{Introduction}
 
     En mathématiques, en analyse numérique, l'interpolation polynomiale est une technique d'interpolation d'un ensemble de données ou d'une fonction par un polynôme. En d'autres termes, étant donné un ensemble de points $\lbrace{(t_{0}, y_{0}), … , (t_{n},y_{n})}\rbrace $ (obtenu, par exemple, à la suite d'une expérience, de mesures), on cherche un polynôme p de degré au plus n qui passe par tous ces points (donc tel que $p(t_{i}) = y_{i}$). 
-
+\newline
+\newline
     Dans une première partie, nous allons évaluer une fonction polynôme en $t$ avec ($t$ appartient réel) a partir d’un ensemble de points de support quelconque. Deux algorithmes seront utilisés afin d’évaluer cette fonction et nous comparerons les temps d’exécution respectifs. 
-
+\newline
+\newline
 Dans une seconde partie, nous allons générer la table des différences divisés a partir des points de supports ainsi que l’écriture du polynôme d’interpolation en ayant calculé au préalable ses composantes. Nous mettrons ensuite en application ces outils MATLAB en utilisant des points régulièrement répartis ainsi que les huit points de Tchebyschev comme support pour notre polynôme d’interpolation de la fonction exponentielle.
-
+\newline
+\newline
 Enfin, en utilisant les outils précédemment développés, nous mettrons en évidence l’erreur d’interpolation commise lors de l’approximation de la fonction exponentielle par les deux différentes fonctions d’interpolations (support avec répartition régulière et support de Tchebyschev).
 
 \chapter*{Partie 1 : Evaluation d’une fonction polynôme en $t$}
@@ -374,6 +377,12 @@ Les supports sont :
 	\lstinputlisting[caption=ApplicationExp, language=Matlab]{ApplicationExp.m}
 \end{center}
 
+\begin{center}
+	\includegraphics[scale=0.8]{comparaison.png}
+\end{center}
+
+Nous remarquons que plus on s'éloigne du domaine d'étude (ici, intervalle [-1;1]), plus la différence entre la courbe de la fonction exponentielle et celles des fonctions interpôlantes augmente. Ceci est cohérent.
+
 \chapter*{Partie 3 : Visualisation de l’erreur d’interpolation}
 \addcontentsline{toc}{chapter}{Partie 3 : Visualisation de l’erreur d’interpolation}
 
@@ -412,13 +421,39 @@ avec
 \addcontentsline{toc}{subsection}{Test}
 
 \begin{center}
-	\includegraphics[scale=0.8]{erreur.jpg} 
+	\includegraphics[scale=0.8]{erreur.png} 
 \end{center}
 
+\begin{center}
+	\includegraphics[scale=0.8]{zoomErreur2.png} 
+\end{center}
+
+Dès que l'on s'éloigne de l'intervalle [-1;1], l'erreur avec le support de Tchebyschev devient plus petite que l'erreur avec le support des points équidistants. C'est l'avantage d'utiliser ces points si on souhaite une fonction qui approxime correctement même en dehors de l'intervalle d'étude.
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 
+La problématique de ce chapitre a été de pouvoir trouver une fonction polynôme qui passerait par un nombre fini de points d’un certain support (obtenus par mesures par exemples). Il existe plusieurs méthodes pour arriver à ce but.
+\newline
+\newline
+Dans ce TP, nous avons utilisé la méthode de Newton et avons produit deux algorithmes permettant d’évaluer la fonction en un point quelconque t. La fonction supposait que l’on connaissait à l’avance les coefficients de l’écriture de Newton.
+\newline
+\newline
+Le premier algorithme produit est classique : il consiste à calculer les polynômes $(x-c)$ où $c$ est un point du support et à multiplier ceux-ci par leurs coefficients respectifs. Néanmoins, cette méthode génère des répétitions et n’est donc pas optimal en terme de temps d’éxécution.
+\newline
+\newline 
+La seconde méthode tiré du Schéma de Horner n’a pas ce défaut. En effet, étant donné que les facteurs $(x-c)$ sont répétés dans l’écriture, il était préférable d’ajouter les facteurs déjà calculés aux les termes suivants de la somme.
+\newline
+\newline
+La mesure du temps d’exécution confirme notre affirmation.
+\newline
+\newline
+Par la suite, nous nous sommes intéressés par l’écriture de la fonction interpôlante en générant la table des différences divisées (qui contient les coefficients de Newton) et en écrivant cette écriture sous forme de chaîne de caractères. Nous devions ensuite interpôler la fonction exponentielle. 
+\newline
+\newline
+Mais la question la plus importante concerne l’erreur commise en faisant cette approximation et le choix des points de support. L’erreur aux points de support est bien sûr nulle mais qu’en est-il des autres points ? 
+\newline
+\newline
 
 
 \end{document}
