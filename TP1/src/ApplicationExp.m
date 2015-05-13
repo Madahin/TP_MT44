@@ -30,7 +30,7 @@ Y2 = exp(X2);
 disp(chaine2);
 
 % On affiche la fonction exp et les deux polynomes d'interpolation
-x = [-1:0.001:1];
+x = [-10:0.001:10];
 
 y1 = evaluation2(7, composante1, X1, x);
 y2 = evaluation2(7, composante2, X2, x);

@@ -380,8 +380,8 @@ Les supports sont :
 \begin{center}
 	\includegraphics[scale=0.8]{comparaison.png}
 \end{center}
-
-Nous remarquons que plus on s'éloigne du domaine d'étude (ici, intervalle [-1;1]), plus la différence entre la courbe de la fonction exponentielle et celles des fonctions interpôlantes augmente. Ceci est cohérent.
+Sur l'intervalle [-1,1], la différence est quasi-nulle.
+Nous remarquons que plus on s'éloigne du domaine d'étude (ici, intervalle [-1;1]), plus la différence entre la courbe de la fonction exponentielle et celles des fonctions interpôlantes augmente. Ceci est cohérent. L'erreur entre les deux courbes et la fonction exponentielle sera étudiée plus en détail dans la partie suivante.
 
 \chapter*{Partie 3 : Visualisation de l’erreur d’interpolation}
 \addcontentsline{toc}{chapter}{Partie 3 : Visualisation de l’erreur d’interpolation}
@@ -414,7 +414,7 @@ avec
 \subsection*{Source}
 \addcontentsline{toc}{subsection}{Source}
 \begin{center}
-	\lstinputlisting[caption=Erreur, language=Matlab, mathescape]{ErreurTex.m}
+	\lstinputlisting[caption=Erreur, language=Matlab, mathescape]{Erreur.m}
 \end{center}
 
 \subsection*{Test}
@@ -425,10 +425,10 @@ avec
 \end{center}
 
 \begin{center}
-	\includegraphics[scale=0.8]{zoomErreur2.png} 
+	\includegraphics[scale=0.8]{zoomErreur.png} 
 \end{center}
 
-Dès que l'on s'éloigne de l'intervalle [-1;1], l'erreur avec le support de Tchebyschev devient plus petite que l'erreur avec le support des points équidistants. C'est l'avantage d'utiliser ces points si on souhaite une fonction qui approxime correctement même en dehors de l'intervalle d'étude.
+L'erreur est nulle aux points de support. Nous pouvons observer que globalement, l'erreur augmente de manière exponentielle. Néanmoins, dès que l'on s'éloigne de l'intervalle [-1,1], l'erreur avec le support de Tchebyschev devient nettement plus petite que l'erreur avec le support des points équi-distants (échelle minuscule). C'est l'avantage d'utiliser ces points si on souhaite une fonction qui approxime correctement même en dehors de l'intervalle d'étude.
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
@@ -454,6 +454,7 @@ Par la suite, nous nous sommes intéressés par l’écriture de la fonction int
 Mais la question la plus importante concerne l’erreur commise en faisant cette approximation et le choix des points de support. L’erreur aux points de support est bien sûr nulle mais qu’en est-il des autres points ? 
 \newline
 \newline
+Nous avons observé que l’erreur (pour les deux fonctions d'interpolation) grandissait au fur et à mesure qu’on s’éloignait des points de support. En ce qui concerne le choix entre les deux supports(équi-distants ou Tchebyschev), nous ne voyons pas immédiatement la différence sur l'exemple de ce TP, mais utiliser les points de Tchebyschev permet d'atténuer le phénomène de Runge qui rend "instable" la courbe d'interpolation : plus on ajoute de points sur le support, plus la courbe sera "instable" au bord. En concentrant les points de supports aux extrémités de l'intervalle, ce phénomène est affaibli et on obtient une meilleure approximation globale. 
 
 
 \end{document}
