@@ -1,4 +1,4 @@
-function [ Px Py ] = CastelJau( Points, t )
+function [ Pn ] = casteljau( Points, t )
 %CASTELJAU Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -11,7 +11,7 @@ for j=1:numel(t)
         Pn(1, p) = Points(p);
     end
     for r=1:n
-        for i=1:numel(Points)-r-1 - (r-1)
+        for i=1:numel(Points)-r-1 -(r-1)
             Pn(r+1, i) = (1 - t(j)) * Pn(r, i) + t(j) * Pn(r, i+2);
         end
     end
