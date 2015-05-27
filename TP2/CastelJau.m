@@ -24,7 +24,7 @@ for j=1:numel(t)
             Ptmp(3, 1 + i + 1, 1 + r + 1) = (1 - t(j)) * Ptmp(3, 1 + i, 1 + r) + t(j) * Ptmp(3, 1 + i + 1, 1 + r);
         end
     end
-    
+    disp(Ptmp);
     Pnx(j) = Ptmp(1, n+1, n+1);
     Pny(j) = Ptmp(2, n+1, n+1);
     Pnz(j) = Ptmp(3, n+1, n+1);
