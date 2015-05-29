@@ -41,19 +41,22 @@ function [ Bik ] = genere_bik( noeud, k, trace)
     if trace == 1
         d = size(Bik);
         figure
-        for i=1:d(1)
+        for i=1:d(1)-k
             
-            subplot(d(1), 1, i)
+            subplot(d(1)-k, 1, i)
             for j=1:d(2) 
                 
                 X = [noeud(j) noeud(j+1)];
                 if (Bik(i,j,k+1) ~= 0)
-                    sn = matlabFunction(Bik(i,j,k+1));                
+                    sn = str2func('@(x)1');
+                    if k>0
+                        sn = matlabFunction(Bik(i,j,k+1));
+                    end
                     fplot(sn,X); hold on;
                 end
             end
             xlim([noeud(1) noeud(Length)]);
-            title(sprintf('B-Splines de degré %i pour i = %i', k+1-1, i-1));
+            title(sprintf('B-Splines de degre %i pour i = %i', k+1-1, i-1));
         end
     end
 end
