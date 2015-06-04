@@ -1,4 +1,4 @@
-function [ Pnx, Pny, Pnz ] = CastelJau( Px, Py, Pz, t )
+function [ Pnx, Pny, Pnz, PInter ] = CastelJau( Px, Py, Pz, t )
 %CASTELJAU - Calcule un point d'une courbe de bezier pour un poid t
 %suivant l'algorithme de CastelJau
 
@@ -33,6 +33,7 @@ for j=1:numel(t)
     Pnx(j) = Ptmp(1, n+1, n+1);
     Pny(j) = Ptmp(2, n+1, n+1);
     Pnz(j) = Ptmp(3, n+1, n+1);
+    PInter = Ptmp;
 end
 
 end
