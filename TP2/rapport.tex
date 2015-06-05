@@ -222,261 +222,162 @@ Que proposeriez-vous comme logiciel de démonstration, destiné à faire saisir 
 \subsection*{Test}
 \addcontentsline{toc}{subsection}{Test}
 
-\subsubsection*{Algorithme de Horner}
-
-\textbf{entrée :}
-
-\begin{list}{}{}
-\item $n$ : entier naturel représentant le degré de $p$;
-\item $a$ : vecteur de $n+1$ réels désignant les coefficients de $p$ dans la base considérée, donc $a(i) = a_{i}$ pour tout $i$ de $\lbrace 0, ..., n\rbrace$;
-\item $c$ : vecteur de $n$ réels désignant les centres considérés, donc $c(i)=c_{i}$ pour tout $i$ de $\lbrace 1, ..., n\rbrace$;
-\item $t$ : réel en lequel on évalue $p$;
-\end{list}
-
-\textbf{sortie}
-\begin{list}{}{}
-\item $val$ : réel défini par $val = p(t)$;
-\item $a'$ : vecteur de $n+1$ réels, dont la signification profonde et l'utilité seront saisie dans le théorème 1.9;
-\end{list}
-
-\textbf{Début du corps}
-\begin{list}{}{}
-\item $a'(n) \longleftarrow a(n)$
-\item \textbf{pour} i = n-1 à \textbf{faire}
-\item \begin{list}{}{}
-\item $a'(i) \longleftarrow a(i) + (t-c(i+1))a'(i+1)$
-\end{list}
-\item \textbf{fin pour}
-\item $val \longleftarrow a'(0)$
-\end{list}
-
-\textbf{Fin du corps}
-
-Nous étudierons ultérieurement la différence de performance entre ces deux schémas. 
-
-\newpage
-\subsection*{Source}
-\addcontentsline{toc}{subsection}{Source}
-
-%\lstinputlisting[caption=product, language=Matlab]{evaluation.m}
-
-\subsection*{Test}
-\addcontentsline{toc}{subsection}{Test}
-
-\begin{center}
-%	\lstinputlisting[caption=Test evaluation, language=Matlab]{testevaluation.m}
-\end{center}
-
-\section*{Question 1c}
-\addcontentsline{toc}{section}{Question 1c}
-
-\subsection*{Théorie}
-\addcontentsline{toc}{subsection}{Théorie}
-
-En utilisant les outils de Matlab $(tic, toc, etime, etc...)$ comparer les temps
-d’exécution des deux fonctions d’évaluation écrites, en fonction du degré
-du polynôme considéré. Visualiser les résultats obtenus.
+\chapter*{Partie 2 : Étude des $B^{i}_{k}$}
+\addcontentsline{toc}{chapter}{Partie 1 : Algorithme de de Casteljau}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
 
-La performance est souvent très importante dans le calcul scientifique. C’est pourquoi nous comparons les temps d’exécution des deux algorithmes précédents en utilisant les fonctions tic et toc de Matlab.
+Écrire une fonction génère $B_{i,k}$ qui, à partir d’un vecteur noeud $t$ (constitué de valeurs distinctes ou confondues en nombre adéquat pour demeurer cohérent avec le reste des données) et de l’entier $k$ inférieur ou égal à 4, fournit la définition de la fonction $B_{i,k}$, pour tout indice $i$ convenable.\\
 
-\subsection*{Source / Test}
-\addcontentsline{toc}{subsection}{Source / Test}
+Adjoindre à la fonction antérieure un champ complémentaire trace qui, lorsqu’il sera égal à 1, fournira la représentation graphique des $B_{i,k}$ sur un intervalle convenable.
 
-\begin{center}
-%	\lstinputlisting[caption=ExecTime1, language=Matlab]{ExecTime1.m}
-\end{center}
-
-\section*{Question 1d}
-\addcontentsline{toc}{section}{Question 1d}
 
 \subsection*{Théorie}
 \addcontentsline{toc}{subsection}{Théorie}
 
-Ecrire une version matricielle de $evaluation()$, qui à partir d’un vecteur
-colonne de réels $T$ produit le vecteur colonne des images $p(T)$. Cette nouvelle
-version sera conservée sous le même nom et considérée comme algorithme
-d’évaluation par défaut.
+Considérons une suite dans $\mathbb{R}$ $t_0 \leqslant t_1 \leqslant … \leqslant t_m$. $(t_0, t_1, …, t_m)$ est appelé le vecteur noeud. 
 
-\subsection*{Source}
-\addcontentsline{toc}{subsection}{Source}
-
-%\lstinputlisting[caption=product, language=Matlab]{evaluation2.m}
-
-\subsection*{Test}
-\addcontentsline{toc}{subsection}{Test}
-
-\begin{center}
-%	\lstinputlisting[caption=Test evaluation2, language=Matlab]{testevaluation2.m}
-\end{center}
-
-\chapter*{Partie 2 : Table des différences divisées et polynômes d’interpolation}
-\addcontentsline{toc}{chapter}{Partie 2 : Table des différences divisées et polynômes d’interpolation}
-
-On utilisera évidemment les algorithmes fournis en cours. On considère une
-fonction $f$, connue sur un support $\lbrace x_{0},...,x_{n}\rbrace$, par la donnée pour tout $i$ de $\lbrace 0,...,n \rbrace$, de $y_{i}$ = $f(x_{i})$.
-
-\section*{Question 2a}
-\addcontentsline{toc}{section}{Question 2a}
-
-\subsection*{Rappel}
-\addcontentsline{toc}{subsection}{Rappel}
-
-Ecrire une fonction $table\_diff\_div(x, y)$ qui, à partir des deux colonnes $x = (x_{0},...,x_{n})$ et $y = (f(x_{0}),...,f(x_{n}))$ de même taille, construit et affiche la table des différences divisées de $f$ sur le support considéré.
-
-\subsection*{Théorie}
-\addcontentsline{toc}{subsection}{Théorie}
-
-Les différents coefficients ai de l’écriture de Newton se déterminent de la manière suivante : $a_{i} = f[x_{0},...,x_{n}] = \frac{f[x_{1},..,x_{k}]-f[x_{0},..,x_{k-1}]}{(x_{k}-x_{0})}$.
-De plus, pour 1 point de support (support $\lbrace x_{0} \rbrace$), $f[x_{0}] = f(x_{0})$.
-Pour 2 points de support (support $\lbrace x_{0},x_{1} \rbrace$), $f[x_{0},x_{1}] = \frac{f(x_{1})-f(x_{0})}{(x_{1}-x_{0})}$.
-Ainsi, nous pouvons construire la table qui contiendra tous les coefficients de l’écriture de Newton à partir d’un support quelconque, appelé table des différences divisées.
-
-\newpage
-\subsection*{Source}
-\addcontentsline{toc}{subsection}{Source}
-
-\begin{center}
-%	\lstinputlisting[caption=table\_diff\_div, language=Matlab]{table_diff_div.m}
-\end{center}
-
-\subsection*{Test}
-\addcontentsline{toc}{subsection}{Test}
-
-\begin{center}
-%	\lstinputlisting[caption=Test table\_diff\_div, language=Matlab]{testtable_diff_div.m}
-\end{center}
-
-\section*{Question 2b}
-\addcontentsline{toc}{section}{Question 2b}
-
-\subsection*{Rappel}
-\addcontentsline{toc}{subsection}{Rappel}
-
-Ecrire une fonction $interpol(n, x, y)$ qui, à partir de l’entier naturel non
-nul n, et des données x et y définies ci-dessus construit le vecteur des
-composantes du polynôme d’interpolation $p_{n}$ de $f$ sur le support $\lbrace  x_{0},...,x_{n} \rbrace$,
-ainsi que la chaîne de son écriture.
-
-\subsection*{Théorie}
-\addcontentsline{toc}{subsection}{Théorie}
-
-Les coefficients de Newton sont situés sur la diagonale descendante de la table des différences divisées. 
-
-L’écriture de Newton est de la forme :
+On définit par récurrence les fonctions B-splines $B_{i,k}$ pour $i = 0, … , m-k-1$ par les relations suivantes :
 
 \begin{equation}
-p(x) = \sum_{\substack{i=0}}^{n} \left(a_{i}\left[\prod_{j=0}^{i-1}(x-x_{j})\right]\right)
+	\begin{array}{ll}
+	B_{i,0} = \left\{
+                \begin{array}{ll}
+                  1 $ si $x \in [t_{i}, t_{i+1}[\\
+                  0 $ sinon$
+                \end{array}
+              \right.\\              
+    B_{i,k} = \omega_{i, k}(x)B_{i,k-1}(x) + (1 - \omega_{i+1, k}(x)B_{i+1,k-1}(x)$ si $ k \geqslant 1
+    \end{array}
 \end{equation}
 
-Ainsi, nous utilisons la fonction précédente générant la table des différences divisés afin de récupérer les coefficients de l’écriture de Newton. Après cela, nous affichons sa chaîne de caractères pour mettre en évidence sa constitution. 
+Chaque fonction $B_{i,k}$ est construite par morceaux. En effet, les fonctions $B_{i,k}(x)$ auront pour chaque intervalle $[t_i,t_{i+1}]$ une fonction différente.
 
-\newpage
+
+
 \subsection*{Source}
 \addcontentsline{toc}{subsection}{Source}
 
 \begin{center}
-%	\lstinputlisting[caption=interpol, language=Matlab]{interpol.m}
+	\lstinputlisting[caption=genere\_bik, language=Matlab, mathescape]{genere_bikTex.m}
 \end{center}
 
 \subsection*{Test}
 \addcontentsline{toc}{subsection}{Test}
 
-\begin{center}
-%	\lstinputlisting[caption=Test interpol, language=Matlab]{testinterpol.m}
-\end{center}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{bik}
+		\caption{Courbe B-Spline de degrée 0 pour les points $[1, 2, 3, 4]$}
+	\end{center}
+\end{figure}
 
-\section*{Question 2c}
-\addcontentsline{toc}{section}{Question 2c}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{bik2}
+		\caption{Courbe B-Spline de degrée 1 pour les points $[1, 2, 3, 4]$}
+	\end{center}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{bik3}
+		\caption{Courbe B-Spline de degrée 2 pour les points $[1, 2, 3, 4]$}
+	\end{center}
+\end{figure}
+
+\chapter*{Partie 3 : Exemple d’utilisation en imprimerie}
+\addcontentsline{toc}{chapter}{Partie 3 : Exemple d’utilisation en imprimerie}
+
+\section*{Création de la lettre alpha}
+\addcontentsline{toc}{subsection}{Création de la lettre alpha}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
 
-\begin{list}{}{}
-\item \begin{list}{$\bullet$}{}
-\item Déterminer le polynôme d’interpolation $p_{7,1}$ de la fonction exp sur
-le support $X1$ des huits points régulièrement répartis sur l’intervalle [1, 1].
-\item Déterminer le polynôme d’interpolation $p_{7,2}$ de la fonction $exp$ sur le
-support $X2$ des huits points de Tchebyschev, définis par : $\forall j \in \lbrace 0,...,7 \rbrace$  $X2_{j} = cos(\frac{2j+1}{8} \frac{\pi}{2}).$
-\end{list}
+Écrire une fonction \textbf{creation alpha} permettant de dessiner la lettre alpha en utilisant une Bézier de degré trois, et donc quatre points de contrôle, $P_0$, $P_1$, $P_2$ , $P_3$ qui en constituent les champs d’entrée.
+
+\subsection*{Source}
+\addcontentsline{toc}{subsection}{Source}
+
+\begin{center}
+	\lstinputlisting[caption=genere\_bik, language=Matlab]{creation_alpha.m}
+\end{center}
+
+\newpage
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{alpha}
+		\caption{Lettre alpha}
+	\end{center}
+\end{figure}
+
+
+\section*{Dilatation et rotation d'une lettre}
+\addcontentsline{toc}{subsection}{Test}
+
+\subsection*{Rappel}
+\addcontentsline{toc}{subsection}{Rappel}
+
+\begin{list}{$\bullet$}{}
+\item Écrire une fonction qui permet de tracer la lettre alpha ”dilatée”, dans une homothétie de centre $I$ de rapport $k \neq 0$. Choisir un centre $I$ satisfaisant. Comment mettre en place la lettre dilatée dans un texte?
+
+\item Mêmes questions adaptées dans le cas de la rotée de la lettre alpha.
+
 \end{list}
 
 \subsection*{Théorie}
 \addcontentsline{toc}{subsection}{Théorie}
 
-Nous mettons ici en application les outils précédemment développés pour interpoler la fonction exponentielle sur deux supports différents et pour afficher les écritures respectives.
+Pour dilater et roter toute la lettre alpha, il suffit de modifier la position des points de contrôles d’origine par l’homothétie ou la rotation et de recréer la lettre après ces déplacements.
 
-Les supports sont :
-\begin{list}{}{}
-\item \begin{list}{$\bullet$}{}
-\item le support des huit points régulièrement répartis sur l’intervalle [-1,1].
-\item le support des huit points de Tchebyschev définis par : $\forall j \in \lbrace 0,...,7 \rbrace$  $X2_{j} = cos(\frac{2j+1}{8} \frac{\pi}{2}).$
+La position d’un point $S’$ obtenue par homothétie de rapport $k$ et de centre $O$ à partir d’un point $S$ est 
 
-\end{list}
-\end{list}
-
-\newpage
-\subsection*{Source / Test}
-\addcontentsline{toc}{subsection}{Source / Test}
-
-\begin{center}
-%	\lstinputlisting[caption=ApplicationExp, language=Matlab]{ApplicationExp.m}
-\end{center}
-
-\begin{center}
-%	\includegraphics[scale=0.8]{comparaison.png}
-\end{center}
-Sur l'intervalle [-1,1], la différence est quasi-nulle.
-Nous remarquons que plus on s'éloigne du domaine d'étude (ici, intervalle [-1;1]), plus la différence entre la courbe de la fonction exponentielle et celles des fonctions interpôlantes augmente. Ceci est cohérent. L'erreur entre les deux courbes et la fonction exponentielle sera étudiée plus en détail dans la partie suivante.
-
-\chapter*{Partie 3 : Visualisation de l’erreur d’interpolation}
-\addcontentsline{toc}{chapter}{Partie 3 : Visualisation de l’erreur d’interpolation}
-
-\subsection*{Rappel}
-Utiliser la question précédente et les outils antérieurement développés, pour
-visualiser sur une même représentation graphique, la valeur absolue de l’erreur
-d’interpolation commise lors de l’approximation de la fonction exponentielle
-par $p_{7,1}$ et $p_{7,2}$.
-
-
-\subsection*{Théorie}
-Nous utilisons ici les outils antérieurement développés pour calculer l'erreur entre la fonction exponentielle connu et son approximation par $p_{7,1}$ et $p_{7,2}$.
-Nous utiliserons la formule
 \begin{equation}
-	e_{n}(t) = f(t) - p_{n}(t)
+	S' = (S - 0) * k
 \end{equation}
 
-avec
+La position d’un point $S’$ obtenue par rotation d’angle $k$ et de centre $O$ à partir d’un point $S$ est 
 
-\begin{list}{}{}
-\item
-\begin{itemize}
-	\item[$e_{n}(t)$]: Erreur de l'approximation.
-	\item[$f(t)$]: Fonction exponentielle.
-	\item[$p_{n}(t)$]: Approximation de la fonction exponentielle.
-\end{itemize}
-\end{list}
+\begin{equation}
+	\begin{array}{ll}
+		S'(x) = \cos(k) * (S(x)-O(x)) - \sin(k) * (S(x) - O(x))+O(x)\\
+		S'(y) = \sin(k) * (S(y)-O(y)) - \cos(k) * (S(y) - O(y))+O(x)
+	\end{array}
+\end{equation}
+
 
 \subsection*{Source}
 \addcontentsline{toc}{subsection}{Source}
+
 \begin{center}
-%	\lstinputlisting[caption=Erreur, language=Matlab, mathescape]{Erreur.m}
+	\lstinputlisting[caption=Dilater\_alpha, language=Matlab]{dilatation_alpha.m}
+\end{center}
+
+\begin{center}
+	\lstinputlisting[caption=Rotation\_alpha, language=Matlab]{rotation_alpha.m}
 \end{center}
 
 \subsection*{Test}
 \addcontentsline{toc}{subsection}{Test}
 
-\begin{center}
-%	\includegraphics[scale=0.8]{erreur.png} 
-\end{center}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.7]{dilate}
+		\caption{Lettre alpha dilater de centre $(0, 0)$ de rapport 2}
+	\end{center}
+\end{figure}
 
-\begin{center}
-%	\includegraphics[scale=0.8]{zoomErreur.png} 
-\end{center}
-
-L'erreur est nulle aux points de support. Nous pouvons observer que globalement, l'erreur augmente de manière exponentielle. Néanmoins, dès que l'on s'éloigne de l'intervalle [-1,1], l'erreur avec le support de Tchebyschev devient nettement plus petite que l'erreur avec le support des points équi-distants (échelle minuscule). C'est l'avantage d'utiliser ces points si on souhaite une fonction qui approxime correctement même en dehors de l'intervalle d'étude.
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.7]{rotate}
+		\caption{Lettre alpha roter de centre $(0, 0)$ d'angle $\frac{\pi}{2}$}
+	\end{center}
+\end{figure}
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
