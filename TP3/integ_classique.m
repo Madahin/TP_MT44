@@ -1,6 +1,11 @@
 function [ In ] = integ_classique( type, A, B, N, f)
-%INTEG_CLASSIQUE Summary of this function goes here
-%   Detailed explanation goes here
+%INTEG_CLASSIQUE calcule l'integration numerique en N points de la fonction f (chaine de caractere) entre 
+%A et B (B > A)pour un type donnee.
+%Type :
+%0 -> methode des rectangles
+%1 -> methode des points millieu
+%2 -> methode des trapeze
+%3 -> methode de simpson
 
 switch type
     case 0
