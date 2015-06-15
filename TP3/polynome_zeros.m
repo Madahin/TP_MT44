@@ -1,7 +1,7 @@
 clear;
 clc;
 
-n_max=4;
+n_max=3;
 
 poly_legendre = polynome_legendre(n_max);
 poly_tchebyschev = polynome_tchebyschev(n_max);
