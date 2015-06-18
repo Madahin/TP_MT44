@@ -11,11 +11,12 @@ N = 15;
 
 
 % Il nous faut une variable symbolique pour calculer l'integral 'juste'
-% dans un interval donne
 syms x;
 
 % definition des fonctions a integrer
 f = [sin(x);1/(1+x^2);exp(x)];
+
+% Definition des titres
 titles = ['sin(x)   ';'1/(1+x^2)';'exp(x)   '];
 
 % recupere le nombre de fonction a integrer disponnible
@@ -41,7 +42,6 @@ for n=1:nbFunc
         title(titles(n, :));
         % Les warning n'on aucune importances
         legend('gauss/legendre', 'gauss/tchebyschev');
-        %title(f(n, :));
         hold on;
     end
 end
