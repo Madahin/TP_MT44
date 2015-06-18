@@ -41,6 +41,7 @@ for n=1:nbFunc
         % Les warning n'on aucune importances
         legend('integ rectangle', 'integ millieu', 'integ trapeze', 'integ simpson');
         title(f(n, :));
+        %axis([50 100 0 0.1]);
         hold on;
     end
 end
