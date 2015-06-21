@@ -1,13 +1,13 @@
 function [ tchebyschev ] = polynome_tchebyschev( k )
-%POLYNOME_TCHEBYSCHEV Retourne un tableau contenant les polynome de
+%POLYNOME_TCHEBYSCHEV Retourne un tableau contenant les polynomes de
 %Tchebyschev
 
-% Nos polynome dependent d'une variable symbolique
+% Nos polynomes dependent d'une variable symbolique
 syms x;
 
-% La polynome de degree 0 n'est pas symbolique, mais tout les autres le
+% La polynome de degre 0 n'est pas symbolique, mais tous les autres le
 % sont. Il faut donc un type de donnee capable de stocker aussi bien des
-% symbolique que des reel
+% symboliques que des reels
 tchebyschev = sym(zeros(1, k));
 
 % On assigne les premiers degres
@@ -16,8 +16,8 @@ if k >= 1
     tchebyschev(2) = x;
 end
 
-% On calcule tout les polynome du degre 3 jusqu'au degre k (si k < 3, la
-% boucle est ignore)
+% On calcule tous les polynomes du degre 3 jusqu'au degre k (si k < 3, la
+% boucle est ignoree)
 for i=3:k
     tchebyschev(i) = 2*x*tchebyschev(i-1)-tchebyschev(i-2);
 end

@@ -85,7 +85,12 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-Dans ce TP, on s’intéresse au calcul numérique d’intégrales. Deux approches de la problématique de l’intégration sont proposées, les méthodes d’intégration dîtes classiques et les méthodes gaussiennes. Bien que profondément différentes dans leur construction, ces deux approches s’appuient sur les acquis de l’interpolation vue au TP1. Ce TP commence donc par la mise en oeuvre des méthodes d’intégration classiques et se finira sur les méthodes d’intégration gaussienne.
+Dans ce TP, on s’intéresse au calcul numérique d’intégrales. Deux approches de la problématique de l’intégration sont proposées, les méthodes d’intégration dîtes classiques et les méthodes gaussiennes.
+\\
+\\
+Bien que profondément différentes dans leur construction, ces deux approches s’appuient sur les acquis de l’interpolation vue au TP1. En effet, ces méthodes d'intégration sont très utiles pour calculer numériquement l'intégrale d'une fonction interpolant des points de mesure par exemple. 
+\\
+\\Ce TP commence donc par la mise en oeuvre des méthodes d’intégration classiques et se finira sur les méthodes d’intégration gaussienne.
 
 
 \chapter*{Partie 1 : Mise en oeuvre des méthodes d'intégration classiques}
@@ -96,8 +101,8 @@ Dans ce TP, on s’intéresse au calcul numérique d’intégrales. Deux approch
 
 Soient $A$ et $B$ deux réels tels que $A < B$, $f$ une fonction de $[A;B]$ dans $\R$. On désire obtenir une approximation de l'intégrale de $f$ sur $[A;B]$ par les méthodes  classiques d'intégration (méthodes des rectangles, des milieux, des trapèzes et de   Simpson) en prenant $N$ sous-intervalles ($N$ entier naturel non nul). On considère le    pas de discrétisation défini par $h = \frac{(B - A)}{N}$.
 
-\section*{Question a}
-\addcontentsline{toc}{section}{Question a}
+\section*{Question 1.a}
+\addcontentsline{toc}{section}{Question 1.a}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
@@ -129,18 +134,18 @@ Soit $f$ une fonction régulière sur $[A, B]$ (on supposera $f$ de classe $C^{4
 
 \begin{center}
 	\lstinputlisting[caption=integ\_classique, language=Matlab]{integ_classique.m}
+
 	\lstinputlisting[caption=integ\_rectangle, language=Matlab]{integ_rectangle.m}
-	\lstinputlisting[caption=integ\_milieux, language=Matlab]{integ_millieu.m}
-	\lstinputlisting[caption=integ\_trapeze, language=Matlab]{integ_trapeze.m}
+	
+	\lstinputlisting[caption=integ\_milieux, language=Matlab]{integ_milieu.m}
+	
+	\lstinputlisting[caption=integ\_trapezes, language=Matlab]{integ_trapeze.m}
+	
 	\lstinputlisting[caption=integ\_simpson, language=Matlab]{integ_simpson.m}
 \end{center}
 
-\subsection*{Test}
-\addcontentsline{toc}{subsection}{Test}
-
-
-\section*{Question b}
-\addcontentsline{toc}{section}{Question b}
+\section*{Question 1.b}
+\addcontentsline{toc}{section}{Question 1.b}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
@@ -171,33 +176,48 @@ E^{N}_{T} &=& -h^2 \frac{B-A}{12}f^{(2)}(\eta) \text{ avec } \eta \in ]A, B[\\
 E^{N}_{R} &=& -\left(\frac{h}{4}\right)^4 \frac{B-A}{180}f^{(4)}(\eta) \text{ avec } \eta \in ]A, B[
 \end{eqnarray}
 
-\newpage
+
 \subsection*{Test}
 \addcontentsline{toc}{subsection}{Test}
 
+\begin{center}
+\lstinputlisting[caption=Evaluation de l'erreur, language=Matlab]{test_error.m}
+\end{center}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.3]{error}
+		\includegraphics[scale=0.5]{error}
 		\caption{Valeur absolue de l'erreur d'intégration}
 	\end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.3]{error2}
+		\includegraphics[scale=0.5]{error2}
 		\caption{Zoom sur l'erreur d'intégration entre 50 et 100 points}
 	\end{center}
 \end{figure}
 
-\newpage
-\subsection*{Source}
-\addcontentsline{toc}{subsection}{Source}
+\begin{figure}[H]
+\textbf{Test de performance temporelle}
+		\\
+		\\
+		Nous remarquons que, bien que la méthode de Simpson soit la plus performante niveau résultat, elle prend légèrement plus de temps à le trouver en comparaison avec les trois autres méthodes.
+	\begin{center}
+		\includegraphics[scale=0.5]{performance}
+		\caption{Test de la performance temporelle des 4 méthodes}
+	\end{center}
+	
+\end{figure}
+
 
 \begin{center}
-	\lstinputlisting[caption=integ\_classique, language=Matlab]{test_error.m}
+\lstinputlisting[caption=test\_perform.m, language=Matlab]{test_perform.m}
 \end{center}
 
+
+
+\newpage
 \chapter*{Partie 2 : Intégration gaussienne}
 \addcontentsline{toc}{chapter}{Partie 2 : Intégration gaussienne}
 
@@ -209,8 +229,8 @@ L'objet de cette partie est de préparer, sans qu'il soit nécessairement comple
 La structure globale de la fonction d'intégration gaussienne doit exister ; l'utilisateur peut choisir  la méthode a mettre en oeuvre.
 On ne réfléchira, qu'une fois le reste du TP terminé, a la reconnaissance de la forme d'intégration gaussienne à utiliser en process automatique !
 
-\section*{Question a}
-\addcontentsline{toc}{section}{Question a}
+\section*{Question 2.a}
+\addcontentsline{toc}{section}{Question 2.a}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
@@ -233,12 +253,19 @@ En mathématiques, une suite de polynômes orthogonaux est une suite infinie de 
 \addcontentsline{toc}{subsection}{Source}
 
 \begin{center}
-	\lstinputlisting[caption=Polynome de Legendre, language=Matlab]{polynome_legendre.m}
-	\lstinputlisting[caption=Polynome de Tchebyschev, language=Matlab]{polynome_tchebyschev.m}
+	\lstinputlisting[caption=Polynomes de Legendre, language=Matlab]{polynome_legendre.m}
+	\lstinputlisting[caption=Polynomes de Tchebyschev, language=Matlab]{polynome_tchebyschev.m}
 \end{center}
 
-\section*{Question b}
-\addcontentsline{toc}{section}{Question b}
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+\begin{center}
+	\lstinputlisting[caption=Script test.m (affichage des polynômes orthogonaux\, de leurs racines et des coefficients d'intégration), language=Matlab]{test.m}
+\end{center}
+
+\section*{Question 2.b}
+\addcontentsline{toc}{section}{Question 2.b}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
@@ -248,18 +275,43 @@ Pour les différentes familles de polynômes orthogonaux prises en compte au par
 \subsection*{Théorie}
 \addcontentsline{toc}{subsection}{Théorie}
 
-Les zéros des polynômes orthogonaux nous seront indispensables pour calculer l’intégrale numérique.
+Les zéros des polynômes orthogonaux nous seront indispensables pour calculer l’intégrale numérique. 
+
+Pour l’intégration de Legendre, ces zéros ne sont pas connus explicitement mais calculés par une méthode numérique. 
+
+En revanche, pour l’intégration de Tchebyschev, les zéros sont connus explicitement et données par :
+    
+\begin{equation*}
+\forall{i} \in \{0, ..., n\}, x_i = \cos \left(\frac{2i + i}{n + 1}\frac{\pi}{2}\right)
+\end{equation*}
 
 \subsection*{Source}
 \addcontentsline{toc}{subsection}{Source}
 
-\begin{lstlisting}[language=Matlab]
-roots(sym2poly((poly_legendre(i)))) % Racines des polynomes de Legendre
-roots(sym2poly((poly_tchebyschev(i)))) % Racines des polynomes de  Tchebyschev
+\begin{lstlisting}[caption=Zeros de Legendre, language=Matlab]
+zeros_legendre = zeros(nb_points-1, nb_points-1);
+poly_legendre = polynome_legendre(nb_points);
+for i=2:nb_points
+    rootsPoly = double(roots(sym2poly((poly_legendre(i)))));
+    zeros_legendre(:, i-1) = [rootsPoly; zeros(nb_points-i, 1)];
+end
 \end{lstlisting}
 
-\section*{Question c}
-\addcontentsline{toc}{section}{Question c}
+\begin{lstlisting}[caption=Zeros de Tchebyschev, language=Matlab]
+zeros_tchebyschev = zeros(nb_points-1, nb_points-1);
+poly_tchebyschev = polynome_tchebyschev(nb_points);
+for i=2:nb_points
+    zeros_tchebyschev(:, i-1) = [roots(sym2poly(poly_tchebyschev(i))); zeros(nb_points-i, 1)];
+end
+\end{lstlisting}
+
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+Voir test de la question 2.a
+
+\section*{Question 2.c}
+\addcontentsline{toc}{section}{Question 2.c}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
@@ -276,44 +328,6 @@ où $[a, b]$ désigne l’intervalle conventionnel d’intégration pour la mét
 
 \subsection*{Théorie}
 \addcontentsline{toc}{subsection}{Théorie}
-
-Les zéros des polynômes orthogonaux nous seront indispensables pour calculer l’intégrale numérique. Pour l’intégration de Legendre, ces zéros ne sont pas connus explicitement mais calculés par une méthode numérique. En revanche, pour l’intégration de Tchebyschev, les zéros sont connus explicitement et données par :
-    
-\begin{equation*}
-\forall{i} \in \{0, ..., n\}, x_i = \cos \left(\frac{2i + i}{n + 1}\frac{\pi}{2}\right)
-\end{equation*}
-
-\subsection*{Source}
-\addcontentsline{toc}{subsection}{Source}
-
-\begin{lstlisting}[caption=Zeros de Legendre, language=Matlab]
-zeros_legendre = zeros(nb_points-1, nb_points-1);
-for i=2:nb_points
-    rootsPoly = double(roots(sym2poly((poly_legendre(i)))));
-    zeros_legendre(:, i-1) = [rootsPoly; zeros(nb_points-i, 1)];
-end
-\end{lstlisting}
-
-\begin{lstlisting}[caption=Zeros de Tchebyschev, language=Matlab]
-zeros_tchebyschev = zeros(nb_points-1, nb_points-1);
-poly_tchebyschev = polynome_tchebyschev(nb_points);
-for i=2:nb_points
-    zeros_tchebyschev(:, i-1) = [roots(sym2poly(poly_tchebyschev(i))); zeros(nb_points-i, 1)];
-end
-\end{lstlisting}
-
-\section*{Question d}
-\addcontentsline{toc}{section}{Question d}
-
-\subsection*{Rappel}
-\addcontentsline{toc}{subsection}{Rappel}
-
-Intégrer les éléments antérieurs pour calculer une valeur approchée d’intégrales convenables par méthode gaussienne. On écrira une fonction \textit{intégration\_gaussienne(type, nb points, r)} qui renvoie une valeur approchée \\de $I=\int_{a}^{b}r(x)w(x)dx$, à partir de la donnée du type d’intégration gaussienne requis, du nombre
-de points à prendre en compte et de la fonction régularisée associée $r$ passée comme une chaîne.
- 
-
-\subsection*{Théorie}
-\addcontentsline{toc}{subsection}{Théorie}
 Pour Gauss-Legendre, 
 \begin{equation*}
 \forall{i} \in \{0, ..., n\}, W_i = \frac{2}{(n+1)L'_{n+1}(x_i)L_{n}(x_i)}
@@ -324,12 +338,54 @@ Pour Gauss-Tchebyschev,
 \forall{i} \in \{0, ..., n\}, W_i = \frac{\pi}{n+1}
 \end{equation*}
 
+
 \subsection*{Source}
 \addcontentsline{toc}{subsection}{Source}
 
+\begin{center}
+	\lstinputlisting[caption=Coefficients d'intégration de Legendre, language=Matlab]{coeff_legendre.m}
+	\lstinputlisting[caption=Coefficients d'intégration de Tchebyschev, language=Matlab]{coeff_tchebyschev.m}
+\end{center}
 
-\section*{Question e}
-\addcontentsline{toc}{section}{Question e}
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+Voir test de la question 2.a
+
+
+\section*{Question 2.d}
+\addcontentsline{toc}{section}{Question 2.d}
+
+\subsection*{Rappel}
+\addcontentsline{toc}{subsection}{Rappel}
+
+Intégrer les éléments antérieurs pour calculer une valeur approchée d’intégrales convenables par méthode gaussienne. On écrira une fonction \textit{intégration\_gaussienne(type, nb points, r)} qui renvoie une valeur approchée \\de $I=\int_{a}^{b}r(x)w(x)dx$, à partir de la donnée du type d’intégration gaussienne requis, du nombre
+de points à prendre en compte et de la fonction régularisée associée $r$ passée comme une chaîne.
+ 
+
+\subsection*{Théorie}
+\addcontentsline{toc}{subsection}{Théorie}
+
+
+\subsection*{Source}
+\addcontentsline{toc}{subsection}{Source}
+\lstinputlisting[caption=Integration gaussienne, language=Matlab]{integration_gaussienne.m}
+
+\subsection*{Test}
+\begin{center}
+\addcontentsline{toc}{subsection}{Test}
+\lstinputlisting[caption=Test intégration de Gauss-Legendre, language=Matlab]{test_integ_gaussienne_legendre.m}
+\lstinputlisting[caption=Test intégration de Gauss-Tchebyschev, language=Matlab]{test_integ_gaussienne_tchebyschev.m}
+
+
+\end{center}
+
+\textbf{Remarque}
+ 
+L'intégration de sin(x) dans les deux tests devrait être nulle (fonction impaire sur [-1,1], or Matlab nous affiche une erreur de l'ordre de $10^{-15}$. Ceci est dû à la propagation de l'erreur.
+
+\section*{Question 2.e}
+\addcontentsline{toc}{section}{Question 2.e}
 
 \subsection*{Rappel}
 \addcontentsline{toc}{subsection}{Rappel}
@@ -351,16 +407,6 @@ Pour Gauss-Tchebyschev, l’erreur commise est donnée par :
 E_{n+1} = r^{(2n+2)}(\xi) \frac{2\pi}{2^{2n+2}(2n+2)!}
 \end{equation*}
 
-\subsection*{Test}
-\addcontentsline{toc}{subsection}{Test}
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[scale=0.35]{error_gauss}
-		\caption{Valeur absolue de l'erreur d'intégration}
-	\end{center}
-\end{figure}
-
 \subsection*{Source}
 \addcontentsline{toc}{subsection}{Source}
 
@@ -368,8 +414,21 @@ E_{n+1} = r^{(2n+2)}(\xi) \frac{2\pi}{2^{2n+2}(2n+2)!}
 	\lstinputlisting[caption=erreur d'integration de Gauss, language=Matlab]{test_error_gauss.m}
 \end{center}
 
-\chapter*{Conclusion}
-\addcontentsline{toc}{chapter}{Conclusion}
+\subsection*{Test}
+\addcontentsline{toc}{subsection}{Test}
+
+\begin{figure}[H]
+
+
+	Nous remarquons que les erreurs convergent rapidement vers 0. Il faut seulement 3 points pour arriver à une erreur minime pour la fonction $e^{x}$. La méthode de Gauss-Legendre est également légèrement plus performante que celui de Gauss-Tchebyschev au niveau des résultats.
+	\\
+	\\
+	De plus, pour la fonction $sin(x)$, l'erreur devrait être nulle, mais comme expliqué précédemment, la propagation de l'erreur est responsable de cet erreur minime.
+	\begin{center}
+		\includegraphics[scale=0.35]{error_gauss}
+		\caption{Valeur absolue de l'erreur d'intégration}
+	\end{center}
+\end{figure}
 
 
 \end{document}

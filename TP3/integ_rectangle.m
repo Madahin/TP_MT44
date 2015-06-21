@@ -1,9 +1,9 @@
 function [ In ] = integ_rectangle( A, B, N, f )
 %INTEG_RECTANGLE Retourne le resultat de l'integration par methode des
-%rectangle de la fonction f (chaine de caractere) dans l'interval [A, B] 
+%rectangles de la fonction f (chaine de caractere) dans l'intervalle [A,B] 
 %avec N points
 
-    % On calcule la taille d'un interval
+    % On calcule la taille d'un intervalle
     h = (B-A) / N;
     % On transforme la chaine de caractere en fonction
     func = str2func(['@(x)' f]);
